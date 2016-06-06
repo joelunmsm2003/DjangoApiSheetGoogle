@@ -1,0 +1,14 @@
+
+
+
+<form action="/uploadbase/" method="post"  role="form" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+
+
+<input type="file" required=""  name="process_file">
+
+
+<button class="btn btn-primary" type="submit">Agregar</button>
+</form>
