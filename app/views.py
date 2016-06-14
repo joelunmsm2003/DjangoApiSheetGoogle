@@ -81,6 +81,31 @@ def nuevos(request):
 	return HttpResponse(data, content_type="application/json")
 
 
+
+
+@csrf_exempt
+def listaqr(request,inicio,fin):
+
+	x = []
+
+	for i in range(int(inicio), int(fin)):
+
+		print worksheet.row_values(i)
+		
+		x.insert(i,str(worksheet.row_values(i)[0])+','+str(worksheet.row_values(i)[1])+','+str(worksheet.row_values(i)[2])+','+str(worksheet.row_values(i)[3])+','+str(worksheet.row_values(i)[5])+','+'http://api.qrserver.com/v1/create-qr-code/?data='+str(worksheet.row_values(i)[0])+'&size=150x150')
+
+	data = json.dumps(x)
+
+	return HttpResponse(data, content_type="application/json")
+
+
+
+@csrf_exempt
+def qr(request,inicio,fin):
+
+	return render(request, 'qr.html',{})
+
+
 @csrf_exempt
 def enventa(request,id):
 
@@ -96,6 +121,74 @@ def enventa(request,id):
 	worksheet.update_cell(fila, 8, str(date))
 
 	data = json.dumps('x')
+	
+	return HttpResponse(data, content_type="application/json")
+
+
+@csrf_exempt
+def alertaalmacen(request):
+
+
+	cell = worksheet.findall("Almacen")
+
+	cont = 0
+
+	for i in cell:
+
+		cont=cont+1
+
+	data = json.dumps(cont)
+	
+	return HttpResponse(data, content_type="application/json")
+
+
+
+
+@csrf_exempt
+def setnuevo(request,id):
+
+	cell = worksheet.find(id)
+
+	date =datetime.now()-timedelta(hours=5)
+
+	fila = cell.row
+
+	print 'fila',fila
+
+	worksheet.update_cell(fila, 7, 'Nuevo')
+	worksheet.update_cell(fila, 8, '')
+
+	fila = cell.row
+
+	v = worksheet.row_values(fila)
+
+	venta = v[1]+' '+v[2]+' '+v[3]+' '+v[4]+' '+v[5]
+
+	data = json.dumps(venta)
+	
+	return HttpResponse(data, content_type="application/json")
+
+@csrf_exempt
+def ubica(request,id,ubica):
+
+	cell = worksheet.find(id)
+
+	date =datetime.now()-timedelta(hours=5)
+
+	fila = cell.row
+
+	v = worksheet.row_values(fila)
+
+	venta = v[1]+' '+v[2]+' '+v[3]+' '+v[4]+' '+v[5]
+
+
+	print 'fila',fila
+
+	worksheet.update_cell(fila, 5, ubica)
+	worksheet.update_cell(fila, 7, 'Traslado')
+	worksheet.update_cell(fila, 10, str(date))
+
+	data = json.dumps(venta)
 	
 	return HttpResponse(data, content_type="application/json")
 
@@ -133,8 +226,8 @@ def vendido(request,id):
 
 		print 'Enviando SMS...........'
 
-		os.environ['numero']='980729169'
-		os.environ['mensaje']=venta
+		os.environ['numero']='51980729169'
+		os.environ['mensaje']=str(venta)
 		os.system('./sms.sh')
 
 		worksheet.update_cell(fila, 7, 'Vendido')
@@ -142,7 +235,7 @@ def vendido(request,id):
 		worksheet.update_cell(fila, 11,'Complete')
 
 	
-	data = json.dumps('x')
+	data = json.dumps(v[1]+' '+v[2]+' '+v[3]+' '+v[4]+' '+v[5])
 	
 	return HttpResponse(data, content_type="application/json")
 

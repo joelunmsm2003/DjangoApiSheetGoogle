@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  
+
+   
+
+    <script type="text/javascript" src="/static/js/angular.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/angular-cookie.js"></script>
+    <script type="text/javascript" src="/static/js/url.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-file.min.js"></script>
+       <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+
+    <link href="/static/css/bootstrap.css" rel="stylesheet" type='text/css'>
+
+    
+
+    <script>
+
+    var myApp=angular.module('myApp', ['ngCookies']);
+    myApp.config(function($interpolateProvider){
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    });
+
+    var sortingOrder = '-id';
+    
+    </script>
+  
+</head>
+
+<style type="text/css">
+	
+	body{
+
+		font-family: 'Open Sans', sans-serif;
+		font-size: 12px;
+	}
+
+</style>
+
+<body>
+
+<div  ng-app="myApp" ng-controller="Todo">
+
+
+
+{[{carga}]}   
+
+			<div class='row'>
+
+            <div class="col-md-2"  ng-repeat="contact in urllista ">
+
+            	<div class='row'>
+
+	            	<div class="col-md-12">
+
+	            	{[{contact.split(',')[0]}]}
+	            	{[{contact.split(',')[2]}]}
+	            	{[{contact.split(',')[3]}]}
+	            	{[{contact.split(',')[4]}]}
+	            	</div>
+					
+					<div class="col-md-12">
+	                
+	                <img src="{[{contact.split(',')[5]}]}"></img>
+					
+					</div>
+
+				</div>
+
+            </div>
+
+            </div>
+            
+			       
+
+       
+
+
+  
+
+</div>
+</div>
+
+
+
+
+
+
+</body></html>
+

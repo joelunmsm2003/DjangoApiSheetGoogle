@@ -14,11 +14,15 @@ urlpatterns = patterns('',
 	url(r'^lista/$', 'app.views.lista'),
 	url(r'^nuevos/$', 'app.views.nuevos'),
 	url(r'^enventa/(\w+)/$', 'app.views.enventa'),
+	url(r'^setnuevo/(\w+)/$', 'app.views.setnuevo'),
 	url(r'^vendido/(\w+)/$', 'app.views.vendido'),
 	url(r'^torre/(\w+)/$', 'app.views.torre'),
 	url(r'^centro/(\w+)/$', 'app.views.centro'),
 	url(r'^vendidogrupo/$', 'app.views.vendidogrupo'),
-
+	url(r'^ubica/(\w+)/(\w+)/$', 'app.views.ubica'),
+	url(r'^listaqr/(\d+)/(\d+)/$', 'app.views.listaqr'),
+	url(r'^qr/(\d+)/(\d+)/$', 'app.views.qr'),
+	url(r'^alertaalmacen/$', 'app.views.alertaalmacen'),
 
 
 
