@@ -222,17 +222,18 @@ def vendido(request,id):
 
 	e = worksheet.cell(fila, 11).value
 
-	if e != 'Complete':
+	#if e != 'Complete':
 
-		print 'Enviando SMS...........'
+	#print 'Enviando SMS...........'
 
-		os.environ['numero']='51980729169'
-		os.environ['mensaje']=str(venta)
-		os.system('./sms.sh')
-
-		worksheet.update_cell(fila, 7, 'Vendido')
-		worksheet.update_cell(fila, 9, str(date))
-		worksheet.update_cell(fila, 11,'Complete')
+	'''
+	os.environ['numero']='51980729169'
+	os.environ['mensaje']=str(venta)
+	os.system('./sms.sh')
+	'''
+	worksheet.update_cell(fila, 7, 'Vendido')
+	worksheet.update_cell(fila, 9, str(date))
+	worksheet.update_cell(fila, 11,'Complete')
 
 	
 	data = json.dumps(v[1]+' '+v[2]+' '+v[3]+' '+v[4]+' '+v[5])
@@ -269,7 +270,7 @@ def torre(request,id):
 
 	print 'fila',fila
 
-	worksheet.update_cell(fila, 5, 'Torre')
+	worksheet.update_cell(fila, 5, 'torre')
 	worksheet.update_cell(fila, 10, str(date))
 
 	data = json.dumps('x')
@@ -288,7 +289,7 @@ def centro(request,id):
 
 	print 'fila',fila
 
-	worksheet.update_cell(fila, 5, 'Centro')
+	worksheet.update_cell(fila, 5, 'centro')
 	worksheet.update_cell(fila, 10, str(date))
 
 	data = json.dumps('x')
